@@ -31,6 +31,8 @@ namespace Quiz
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
             mBtnRegister = FindViewById<Button>(Resource.Id.btnRegister);
+
+            //Rejestraca
             mProgressBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
             mBtnRegister.Click += (object sender, EventArgs args) =>
             {
@@ -40,6 +42,8 @@ namespace Quiz
                 registerDialog.mOnAddUserComplete += RegisterDialog_mOnAddUserComplete;
             };
 
+
+            //logowanie
             mBtnLogin = FindViewById<Button>(Resource.Id.btnLogin);
             mBtnLogin.Click += delegate
             {/*

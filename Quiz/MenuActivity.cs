@@ -15,12 +15,26 @@ namespace Quiz
     [Activity(Label = "MenuActivity")]
     public class MenuActivity : Activity
     {
+        private Button mBtnToAddCategory;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.menu);
+            mBtnToAddCategory = FindViewById<Button>(Resource.Id.btnToAddCategory);
 
-            // Create your application here
+            mBtnToAddCategory.Click += delegate
+            {
+                FragmentTransaction transcation = FragmentManager.BeginTransaction();
+                dialogCategory dialogCat = new dialogCategory();
+                dialogCat.Show(transcation, "dialog fragment");
+                dialogCat.mOnAddCategoryCompleted += DialogCat_mOnAddCategoryCompleted;
+
+            };
+        }
+
+        private void DialogCat_mOnAddCategoryCompleted(object sender, onAddCategoryEventArgs e)
+        {
+            DialogFragment dialogAddCategory = sender as DialogFragment; // do zamkniecia
         }
     }
 }

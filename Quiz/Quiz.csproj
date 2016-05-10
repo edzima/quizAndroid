@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dialogCategory.cs" />
     <Compile Include="dialog_Login.cs" />
     <Compile Include="has.cs" />
     <Compile Include="MainActivity.cs" />
@@ -71,6 +72,9 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\login.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\addCategory.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

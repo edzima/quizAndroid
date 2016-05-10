@@ -31,7 +31,7 @@
         android:layout_weight="15"
         android:layout_height="0dp"
         android:background="@drawable/btnRegisterStyle"
-        android:id="@+id/btnAddCategory"
+        android:id="@+id/btnToAddCategory"
         android:textSize="15sp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />

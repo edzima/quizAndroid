@@ -36,7 +36,6 @@ namespace Quiz
         {
             Login = login;
             Password = password;
-  
         }
 
     }
