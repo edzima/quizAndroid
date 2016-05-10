@@ -26,6 +26,9 @@ namespace Quiz
 
         protected override void OnCreate(Bundle bundle)
         {
+
+
+            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
@@ -104,13 +107,25 @@ namespace Quiz
                 {
                     if(con.State == ConnectionState.Closed)
                     {
-                        con.Open(); //
-                        MySqlCommand cmd = new MySqlCommand("SELECT INTO user(login, mail, pass) VALUES (@login, @mail, @pass)", con);
+                        con.Open(); //""
+
+                        MySqlCommand cmd = new MySqlCommand("SELECT login FROM user where login=@login", con);
                         cmd.Parameters.AddWithValue("@login", userArgs.Login);
-                        cmd.Parameters.AddWithValue("@mail", userArgs.Email);
-                        cmd.Parameters.AddWithValue("@pass", has.Hash(userArgs.Password));
-                        cmd.ExecuteNonQuery();
-                        Toast.MakeText(this, "Witaj "+userArgs.Login, ToastLength.Short).Show();
+                        MySqlDataReader reader = cmd.ExecuteReader();
+                        if (!reader.Read())
+                        {
+                            reader.Close();
+                            cmd.CommandText = "INSERT INTO user(login, mail, pass) VALUES (@login, @mail, @pass)";
+                            cmd.Parameters.AddWithValue("@mail", userArgs.Email);
+                            cmd.Parameters.AddWithValue("@pass", has.Hash(userArgs.Password));
+                            cmd.ExecuteNonQuery();
+                            Toast.MakeText(this, "Witaj " + userArgs.Login, ToastLength.Short).Show();
+
+                        }
+                        else{
+                            reader.Close();
+                            Toast.MakeText(this, "Podana login jest zajęty", ToastLength.Long).Show();
+                        }
                     }
                 }
                 catch(MySqlException ex)
@@ -148,7 +163,6 @@ namespace Quiz
                         {
                             idUser = Reader[0].ToString();
                             passDb = Reader[1].ToString();
-                   
                         }
                         Reader.Close();
 

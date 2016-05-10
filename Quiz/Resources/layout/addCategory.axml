@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="300dp"
-    android:minHeight="300dp">
+    android:minHeight="200dp">
     <EditText
         android:id="@+id/txtCategoryName"
         android:layout_width="match_parent"
@@ -12,6 +12,7 @@
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:singleLine="true"
         android:layout_marginTop="25dp"
         android:hint="Nazwa kategorii:"
         android:paddingLeft="10dp"
