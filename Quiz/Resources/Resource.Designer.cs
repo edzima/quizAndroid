@@ -112,8 +112,8 @@ namespace Quiz
 			// aapt resource value: 0x7f07000f
 			public const int btnAddQuestion = 2131165199;
 			
-			// aapt resource value: 0x7f070028
-			public const int btnAddUser = 2131165224;
+			// aapt resource value: 0x7f07002c
+			public const int btnAddUser = 2131165228;
 			
 			// aapt resource value: 0x7f070013
 			public const int btnLogin = 2131165203;
@@ -133,8 +133,14 @@ namespace Quiz
 			// aapt resource value: 0x7f070018
 			public const int btnToAddCategory = 2131165208;
 			
-			// aapt resource value: 0x7f07002a
-			public const int button = 2131165226;
+			// aapt resource value: 0x7f070026
+			public const int btn_3 = 2131165222;
+			
+			// aapt resource value: 0x7f070027
+			public const int btn_4 = 2131165223;
+			
+			// aapt resource value: 0x7f07002e
+			public const int button = 2131165230;
 			
 			// aapt resource value: 0x7f070023
 			public const int button2 = 2131165219;
@@ -144,6 +150,12 @@ namespace Quiz
 			
 			// aapt resource value: 0x7f07000b
 			public const int listTime = 2131165195;
+			
+			// aapt resource value: 0x7f070024
+			public const int listView1 = 2131165220;
+			
+			// aapt resource value: 0x7f070025
+			public const int progressBar = 2131165221;
 			
 			// aapt resource value: 0x7f070016
 			public const int progressBar1 = 2131165206;
@@ -169,8 +181,8 @@ namespace Quiz
 			// aapt resource value: 0x7f07001a
 			public const int textView = 2131165210;
 			
-			// aapt resource value: 0x7f070029
-			public const int textView1 = 2131165225;
+			// aapt resource value: 0x7f07002d
+			public const int textView1 = 2131165229;
 			
 			// aapt resource value: 0x7f07000a
 			public const int textView3 = 2131165194;
@@ -196,8 +208,8 @@ namespace Quiz
 			// aapt resource value: 0x7f070012
 			public const int txtCreate = 2131165202;
 			
-			// aapt resource value: 0x7f070024
-			public const int txtLogin = 2131165220;
+			// aapt resource value: 0x7f070028
+			public const int txtLogin = 2131165224;
 			
 			// aapt resource value: 0x7f070010
 			public const int txtLoginLogin = 2131165200;
@@ -208,14 +220,14 @@ namespace Quiz
 			// aapt resource value: 0x7f070014
 			public const int txtLub = 2131165204;
 			
-			// aapt resource value: 0x7f070025
-			public const int txtMail = 2131165221;
+			// aapt resource value: 0x7f070029
+			public const int txtMail = 2131165225;
 			
-			// aapt resource value: 0x7f070026
-			public const int txtPassword = 2131165222;
+			// aapt resource value: 0x7f07002a
+			public const int txtPassword = 2131165226;
 			
-			// aapt resource value: 0x7f070027
-			public const int txtPassword2 = 2131165223;
+			// aapt resource value: 0x7f07002b
+			public const int txtPassword2 = 2131165227;
 			
 			// aapt resource value: 0x7f07001c
 			public const int txtQuestion = 2131165212;
