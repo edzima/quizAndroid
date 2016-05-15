@@ -33,5 +33,24 @@ namespace Quiz
             }
         }
 
+        public  static void saveset(String name,String value)
+        {
+
+            //store
+            var prefs = Application.Context.GetSharedPreferences("MyApp", FileCreationMode.Private);
+            var prefEditor = prefs.Edit();
+            prefEditor.PutString(name, value);
+            prefEditor.Commit();
+
+        }
+
+        public static String retrieveset(String name)
+        {
+            //retreive 
+            var prefs = Application.Context.GetSharedPreferences("MyApp", FileCreationMode.Private);
+            var somePref = prefs.GetString(name, null);
+            return somePref;
+        }
+
     }
 }
