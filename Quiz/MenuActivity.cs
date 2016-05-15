@@ -9,8 +9,6 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using MySql.Data.MySqlClient;
-using System.Data;
 
 namespace Quiz
 {
@@ -22,14 +20,19 @@ namespace Quiz
         private Button mBtnRank;
         private Button mBtnQuiz;
 
+        private Button mBtnLogOut;
+        private Button mBtnSelectCategory;
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.menu);
-            mBtnToAddCategory = FindViewById<Button>(Resource.Id.btnToAddCategory);
 
+            mBtnLogOut = FindViewById<Button>(Resource.Id.btnLogOut);
+            mBtnSelectCategory = FindViewById<Button>(Resource.Id.btnSelectCategory);
+
+
+            mBtnLogOut.Click += delegate
             mBtnAddQuestion = FindViewById<Button>(Resource.Id.btnAddQuestion);
 
             mBtnRank = FindViewById<Button>(Resource.Id.btnRank);
@@ -47,10 +50,9 @@ namespace Quiz
 
             mBtnToAddCategory.Click += delegate
             {
-                FragmentTransaction transcation = FragmentManager.BeginTransaction();
-                dialogCategory dialogCat = new dialogCategory();
-                dialogCat.Show(transcation, "dialog fragment");
-                dialogCat.mOnAddCategoryCompleted += DialogCat_mOnAddCategoryCompleted;
+                has.saveset("id_user", null);
+                Finish();
+                StartActivity(typeof(MainActivity));
 
             };
             mBtnAddQuestion.Click += delegate
@@ -64,9 +66,8 @@ namespace Quiz
 
         }
 
-        private void DialogCat_mOnAddCategoryCompleted(object sender, onAddCategoryEventArgs e)
-        {
-            DialogFragment dialogAddCategory = sender as DialogFragment; // do zamkniecia
+            mBtnSelectCategory.Click += delegate
+            {
 
             if (e.Name.Length > 3)
             {

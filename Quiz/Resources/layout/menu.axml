@@ -31,10 +31,15 @@
         android:layout_weight="15"
         android:layout_height="0dp"
         android:background="@drawable/btnRegisterStyle"
-        android:id="@+id/btnToAddCategory"
+        android:id="@+id/btnAddCategory"
         android:textSize="15sp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />
+    <Button
+        android:text="Wyloguj"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnLogOut" />
     <Button
         android:text="Ranking"
         android:layout_width="match_parent"

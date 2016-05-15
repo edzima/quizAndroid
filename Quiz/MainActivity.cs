@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using System.Threading;
 using System.Net;
+using System.Configuration;
 
 using System.Data;
 using MySql.Data.MySqlClient;
@@ -20,48 +21,56 @@ namespace Quiz
         private Button mBtnLogin;
         private ProgressBar mProgressBar;
 
+
         private OnAddUserEventArgs userArgs;
         private onLoginEventsArgs loginArgs;
         
 
         protected override void OnCreate(Bundle bundle)
         {
-
-
-            RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(bundle);
 
             // Set our view from the "main" layout resource
-            SetContentView(Resource.Layout.Main);
-            mBtnRegister = FindViewById<Button>(Resource.Id.btnRegister);
 
-            //Rejestraca
-            mProgressBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
-            mBtnRegister.Click += (object sender, EventArgs args) =>
+
+            if (has.retrieveset("id_user") != null)
             {
-                FragmentTransaction transcation = FragmentManager.BeginTransaction();
-                dialog_Register registerDialog = new dialog_Register();
-                registerDialog.Show(transcation, "dialog fragment");
-                registerDialog.mOnAddUserComplete += RegisterDialog_mOnAddUserComplete;
-            };
-
-
-            //logowanie
-            mBtnLogin = FindViewById<Button>(Resource.Id.btnLogin);
-            mBtnLogin.Click += delegate
-            {/*
-                FragmentTransaction transcation = FragmentManager.BeginTransaction();
-                dialog_Login loginDialog = new dialog_Login();
-                loginDialog.Show(transcation, "dialog fragment");
-
-                loginDialog.mOnLoginComplete += LoginDialog_mOnLoginComplete;
-                */
-
                 StartActivity(typeof(MenuActivity));
-            };
+            }
+            else
+            {
+                SetContentView(Resource.Layout.Main);
+                mBtnRegister = FindViewById<Button>(Resource.Id.btnRegister);
+                mProgressBar = FindViewById<ProgressBar>(Resource.Id.progressBar1);
+
+                mBtnRegister.Click += (object sender, EventArgs args) =>
+                {
+                    FragmentTransaction transcation = FragmentManager.BeginTransaction();
+                    dialog_Register registerDialog = new dialog_Register();
+                    registerDialog.Show(transcation, "dialog fragment");
+                    registerDialog.mOnAddUserComplete += RegisterDialog_mOnAddUserComplete;
+                };
+
+
+
+                mBtnLogin = FindViewById<Button>(Resource.Id.btnLogin);
+                mBtnLogin.Click += delegate
+                {
+                    FragmentTransaction transcation = FragmentManager.BeginTransaction();
+                    dialog_Login loginDialog = new dialog_Login();
+                    loginDialog.Show(transcation, "dialog fragment");
+
+                    loginDialog.mOnLoginComplete += LoginDialog_mOnLoginComplete;
+
+                };
+
+                
+            }
+           
 
         }
 
+      
         private void LoginDialog_mOnLoginComplete(object sender, onLoginEventsArgs e)
         {
             
@@ -107,25 +116,13 @@ namespace Quiz
                 {
                     if(con.State == ConnectionState.Closed)
                     {
-                        con.Open(); //""
-
-                        MySqlCommand cmd = new MySqlCommand("SELECT login FROM user where login=@login", con);
+                        con.Open(); //
+                        MySqlCommand cmd = new MySqlCommand("SELECT INTO user(login, mail, pass) VALUES (@login, @mail, @pass)", con);
                         cmd.Parameters.AddWithValue("@login", userArgs.Login);
-                        MySqlDataReader reader = cmd.ExecuteReader();
-                        if (!reader.Read())
-                        {
-                            reader.Close();
-                            cmd.CommandText = "INSERT INTO user(login, mail, pass) VALUES (@login, @mail, @pass)";
-                            cmd.Parameters.AddWithValue("@mail", userArgs.Email);
-                            cmd.Parameters.AddWithValue("@pass", has.Hash(userArgs.Password));
-                            cmd.ExecuteNonQuery();
-                            Toast.MakeText(this, "Witaj " + userArgs.Login, ToastLength.Short).Show();
-
-                        }
-                        else{
-                            reader.Close();
-                            Toast.MakeText(this, "Podana login jest zajęty", ToastLength.Long).Show();
-                        }
+                        cmd.Parameters.AddWithValue("@mail", userArgs.Email);
+                        cmd.Parameters.AddWithValue("@pass", has.Hash(userArgs.Password));
+                        cmd.ExecuteNonQuery();
+                        Toast.MakeText(this, "Witaj "+userArgs.Login, ToastLength.Short).Show();
                     }
                 }
                 catch(MySqlException ex)
@@ -152,7 +149,7 @@ namespace Quiz
                 {
                     if (con.State == ConnectionState.Closed)
                     {
-                        con.Open(); //"SELECT * FROM user where login = '$login'";   
+                        con.Open(); 
                         MySqlCommand cmd = new MySqlCommand("SELECT id_user, pass FROM user where login = @login", con);  
                         cmd.Parameters.AddWithValue("@login", loginArgs.Login);
                         String idUser = "";
@@ -163,10 +160,16 @@ namespace Quiz
                         {
                             idUser = Reader[0].ToString();
                             passDb = Reader[1].ToString();
+                   
                         }
                         Reader.Close();
-
-                        if(passDb==has.Hash(loginArgs.Password)) Toast.MakeText(this, "Zalogowano", ToastLength.Short).Show();
+                      
+                        if (passDb == has.Hash(loginArgs.Password))
+                        {   has.saveset("id_user", idUser);
+                           
+                            Toast.MakeText(this, "Zalogowano", ToastLength.Short).Show();
+                            StartActivity(typeof(MenuActivity));
+                        }
                         else Toast.MakeText(this, "Zły login lub hasło", ToastLength.Short).Show();
 
                     }
