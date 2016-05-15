@@ -59,12 +59,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dialogCategory.cs" />
+    <Compile Include="dialogQuestion.cs" />
     <Compile Include="dialog_Login.cs" />
     <Compile Include="has.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="dialog_Register.cs" />
     <Compile Include="MenuActivity.cs" />
-    <Compile Include="quizActiviti.cs" />
+    <Compile Include="QuizActivity.cs" />
+    <Compile Include="RankingActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="selectCategoryActivity.cs" />
@@ -86,6 +89,18 @@
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\selectCategory.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\ranking.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\addQuiz.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Quiz.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\selectCategoryQuiz.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

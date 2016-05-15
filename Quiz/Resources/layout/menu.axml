@@ -11,7 +11,7 @@
         android:layout_weight="15"
         android:layout_height="0dp"
         android:background="@drawable/btnLoginStyle"
-        android:id="@+id/btnSelectCategory"
+        android:id="@+id/btnQuiz"
         android:textSize="15sp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />
@@ -26,7 +26,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp" />
     <Button
-        android:text="Utrzwórz nową kategorię"
+        android:text="Utwórz nową kategorię"
         android:layout_width="match_parent"
         android:layout_weight="15"
         android:layout_height="0dp"
@@ -40,4 +40,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogOut" />
+    <Button
+        android:text="Ranking"
+        android:layout_width="match_parent"
+        android:layout_weight="15"
+        android:layout_height="0dp"
+        android:background="@drawable/btnRegisterStyle"
+        android:id="@+id/btnRank"
+        android:textSize="15sp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp" />
 </LinearLayout>
